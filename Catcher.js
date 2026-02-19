@@ -11,13 +11,13 @@
 const {
     poketwo_builder,
     //...//
-} = require("source/poketwoBuilder.js");
+} = require("./source/poketwoBuilder.js");
 const {
     pokedetector,
     trader,
     tradeLock
     //...//
-} = require("source/pokeCommands.js");
+} = require("./source/pokeCommands.js");
 const {
     pokelogger,
     notifications,
@@ -25,7 +25,7 @@ const {
     refresh,
     delay,
     //...//
-} = require("source/baseCommands.js")
+} = require("./source/baseCommands.js")
 //
 const {
     Discord,
