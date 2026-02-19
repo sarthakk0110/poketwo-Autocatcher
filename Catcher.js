@@ -8,16 +8,37 @@
  * NOTE: This file is not allocated & publically distributed
  */
 
+const { existsSync } = require("fs");
+
+const requiredPrivateFiles = [
+    "./source/poketwoBuilder.js",
+    "./source/pokeCommands.js",
+    "./source/baseCommands.js",
+    "./source/config.json",
+    "./source/dbconnector.js",
+    "./source/handlers/command.js",
+    "./source/handlers/ready.js"
+];
+
+const missingPrivateFiles = requiredPrivateFiles.filter((file) => !existsSync(file));
+
+if (missingPrivateFiles.length > 0) {
+    console.error("Missing private runtime files required to start Poketwo Autocatcher:");
+    missingPrivateFiles.forEach((file) => console.error(` - ${file}`));
+    console.error("\nThis public repository does not include all runtime files. Use your private/full package to run the catcher.");
+    process.exit(1);
+}
+
 const {
     poketwo_builder,
     //...//
-} = require("source/poketwoBuilder.js");
+} = require("./source/poketwoBuilder.js");
 const {
     pokedetector,
     trader,
     tradeLock
     //...//
-} = require("source/pokeCommands.js");
+} = require("./source/pokeCommands.js");
 const {
     pokelogger,
     notifications,
@@ -25,7 +46,7 @@ const {
     refresh,
     delay,
     //...//
-} = require("source/baseCommands.js")
+} = require("./source/baseCommands.js")
 //
 const {
     Discord,
